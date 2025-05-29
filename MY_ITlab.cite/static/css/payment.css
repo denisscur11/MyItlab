@@ -1,0 +1,77 @@
+/* Стилі для сторінки Оплати (payment.css) */
+
+#payment-page h1 {
+    margin-bottom: 15px;
+}
+
+#payment-page > p { /* Абзац безпосередньо під h1 */
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.payment-form-container {
+    /* .styled-form з forms.css вже надає базові стилі */
+    max-width: 700px; /* Можна зробити трохи ширшою */
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+    margin-right: 8px;
+    accent-color: #FF8C00; /* Колір радіокнопки */
+}
+
+.radio-group label {
+    font-weight: normal;
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0; /* Забираємо відступ у лейбла радіокнопки */
+}
+
+.radio-group label span { /* Для відображення суми */
+    font-weight: bold;
+    color: #333;
+}
+
+#payment-gateway-placeholder {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px dashed #FFD700; /* Жовта пунктирна рамка */
+    border-radius: 5px;
+    text-align: center;
+}
+
+#payment-gateway-placeholder p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+#proceed-to-payment-btn {
+    /* Стилі для кнопки вже є з forms.css або style.css,
+       але можна перевизначити, якщо потрібно */
+    padding: 12px 30px;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.payment-info {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.payment-info strong {
+    color: #FF8C00; /* Оранжевий для суми */
+}
+
+/* Повідомлення про помилку/успіх вже стилізовані в forms.css */
+#payment-message {
+    margin-top: 20px;
+}

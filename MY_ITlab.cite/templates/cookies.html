@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Політика щодо файлів cookie - My ITlab{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/legal.css') }}">
+<style>
+    .cookie-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    .cookie-table th, .cookie-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .cookie-table th {
+        background-color: #f8f8f8;
+        font-weight: 600;
+    }
+    
+    .cookie-table tr:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .cookie-category-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="legal-hero">
+    <div class="container">
+        <h1>Політика щодо файлів cookie</h1>
+        <p>Інформація про те, як ми використовуємо файли cookie на нашому сайті</p>
+        
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+    </div>
+</section>
+
+<div class="legal-page">
+    <div class="meta">
+        <span>Дата публікації: 27 травня 2025</span>
+        <span>Дата набуття чинності: 27 травня 2025</span>
+    </div>
+    
+    <div class="toc">
+        <h3>Зміст</h3>
+        <ol>
+            <li><a href="#what-are-cookies">Що таке файли cookie?</a></li>
+            <li><a href="#how-we-use-cookies">Як ми використовуємо файли cookie</a></li>
+            <li><a href="#types-of-cookies">Типи файлів cookie, які ми використовуємо</a></li>
+            <li><a href="#cookie-management">Управління файлами cookie</a></li>
+            <li><a href="#policy-changes">Зміни в політиці щодо файлів cookie</a></li>
+        </ol>
+    </div>
+    
+    <div class="content">
+        <h2 id="what-are-cookies">1. Що таке файли cookie?</h2>
+        <p>Файли cookie — це невеликі текстові файли, які зберігаються на вашому комп'ютері або мобільному пристрої при відвідуванні веб-сайту. Вони широко використовуються для забезпечення ефективної роботи веб-сайтів, а також для надання інформації власникам сайту.</p>
+        
+        <p>Файли cookie дозволяють веб-сайту "запам'ятовувати" ваші дії та уподобання (наприклад, логін, мову, розмір шрифту та інші налаштування дисплею) протягом певного періоду часу, тому вам не потрібно повторно вводити їх щоразу, коли ви повертаєтеся на сайт або переходите з однієї сторінки на іншу.</p>
+        
+        <h2 id="how-we-use-cookies">2. Як ми використовуємо файли cookie</h2>
+        <p>My ITlab використовує файли cookie для різних цілей, включаючи:</p>
+        <ul>
+            <li>Забезпечення правильної роботи сайту</li>
+            <li>Збереження ваших налаштувань</li>
+            <li>Поліпшення досвіду користувача</li>
+            <li>Аналіз використання сайту для його вдосконалення</li>
+            <li>Розуміння, яка інформація та реклама найбільш цікаві для користувачів</li>
+        </ul>
+        
+        <h2 id="types-of-cookies">3. Типи файлів cookie, які ми використовуємо</h2>
+        <p>Ми використовуємо різні типи файлів cookie на нашому сайті. Їх можна розділити на такі категорії:</p>
+        
+        <h4 class="cookie-category-title">Необхідні файли cookie</h4>
+        <p>Ці файли cookie необхідні для функціонування веб-сайту і не можуть бути вимкнені в наших системах. Вони зазвичай встановлюються тільки у відповідь на дії, які ви виконуєте, що становлять запит послуг, наприклад, встановлення ваших налаштувань конфіденційності, вхід в систему або заповнення форм.</p>
+        
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Ціль</th>
+                    <th>Термін дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>session_id</td>
+                    <td>Підтримка стану сеансу користувача</td>
+                    <td>Сеанс</td>
+                </tr>
+                <tr>
+                    <td>csrf_token</td>
+                    <td>Захист від атак CSRF</td>
+                    <td>Сеанс</td>
+                </tr>
+                <tr>
+                    <td>cookieSettings</td>
+                    <td>Зберігає ваші налаштування щодо використання файлів cookie</td>
+                    <td>1 рік</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4 class="cookie-category-title">Аналітичні файли cookie</h4>
+        <p>Ці файли cookie дозволяють нам підрахувати відвідування і джерела трафіку, щоб ми могли вимірювати і поліпшувати продуктивність нашого сайту. Вони допомагають нам дізнатися, які сторінки найбільш і найменш популярні, і побачити, як відвідувачі переміщаються по сайту.</p>
+        
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Ціль</th>
+                    <th>Термін дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>_ga</td>
+                    <td>Google Analytics - використовується для розрізнення користувачів</td>
+                    <td>2 роки</td>
+                </tr>
+                <tr>
+                    <td>_gid</td>
+                    <td>Google Analytics - використовується для розрізнення користувачів</td>
+                    <td>24 години</td>
+                </tr>
+                <tr>
+                    <td>_gat</td>
+                    <td>Google Analytics - використовується для обмеження частоти запитів</td>
+                    <td>1 хвилина</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4 class="cookie-category-title">Маркетингові файли cookie</h4>
+        <p>Ці файли cookie встановлюються через наш сайт нашими рекламними партнерами. Вони можуть використовуватися цими компаніями для створення профілю ваших інтересів і показу релевантної реклами на інших сайтах.</p>
+        
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Ціль</th>
+                    <th>Термін дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>_fbp</td>
+                    <td>Facebook - використовується для доставки реклами</td>
+                    <td>3 місяці</td>
+                </tr>
+                <tr>
+                    <td>ads/ga-audiences</td>
+                    <td>Google Ads - використовується для ремаркетингу</td>
+                    <td>Сеанс</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2 id="cookie-management">4. Управління файлами cookie</h2>
+        <p>Ви можете контролювати і/або видаляти файли cookie за бажанням. Ви можете видалити всі файли cookie, які вже є на вашому комп'ютері, а також налаштувати більшість браузерів так, щоб вони не розміщували файли cookie. Однак, в цьому випадку вам, можливо, доведеться вручну налаштовувати деякі параметри щоразу при відвідуванні сайту, і деякі служби і функції можуть не працювати.</p>
+        
+        <p>Ви можете контролювати використання файлів cookie на нашому сайті через панель налаштувань cookie, яка з'являється при першому відвідуванні сайту, або через посилання в нижній частині сторінки.</p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="showCookieSettings()" style="background-color: #4a8a36; color: white; padding: 12px 25px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease;">Налаштувати файли cookie</button>
+        </div>
+        
+        <p>Крім того, більшість веб-браузерів дозволяють певний контроль над більшістю файлів cookie через налаштування браузера. Щоб дізнатися більше про файли cookie, включаючи те, як побачити, які файли cookie були встановлені, і як керувати ними і видаляти їх, відвідайте <a href="https://www.allaboutcookies.org" target="_blank">www.allaboutcookies.org</a>.</p>
+        
+        <h2 id="policy-changes">5. Зміни в політиці щодо файлів cookie</h2>
+        <p>Ми можемо час від часу оновлювати нашу політику щодо файлів cookie, щоб відображати, наприклад, зміни в файлах cookie, які ми використовуємо, або з інших операційних, правових чи нормативних причин. Тому, будь ласка, регулярно переглядайте цю політику, щоб бути поінформованими про наше використання файлів cookie та пов'язаних технологій.</p>
+        
+        <p>Дата в верхній частині цієї політики вказує, коли вона була останній раз оновлена. Продовжуючи використовувати наш веб-сайт після внесення змін до цієї політики, ви погоджуєтеся з новими умовами. Якщо зміни будуть суттєвими, ми повідомимо вас через електронну пошту (якщо у нас є ваша адреса) або шляхом розміщення повідомлення на нашому веб-сайті.</p>
+        
+        <div class="contact-section">
+            <h3>Виникли запитання?</h3>
+            <p>Якщо у вас є будь-які запитання щодо нашого використання файлів cookie або інші питання стосовно конфіденційності, будь ласка, зв'яжіться з нами за адресою електронної пошти: <a href="mailto:{{ company_info.email }}">{{ company_info.email }}</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Показати/приховати кнопку "вгору"
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Плавна прокрутка для посилань змісту
+        const tocLinks = document.querySelectorAll('.toc a');
+        
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+    
+    // Функція для показу панелі налаштувань cookie
+    function showCookieSettings() {
+        // Якщо банер прихований, показуємо його
+        const cookieBanner = document.getElementById('cookie-banner');
+        if (cookieBanner.style.display === 'none') {
+            cookieBanner.style.display = 'flex';
+        }
+        
+        // Відкриваємо панель налаштувань
+        document.getElementById('cookie-settings').style.display = 'block';
+        
+        // Прокручуємо до банера
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+</script>
+{% endblock %} 

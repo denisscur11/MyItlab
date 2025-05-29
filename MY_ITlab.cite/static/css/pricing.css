@@ -1,0 +1,528 @@
+/* Стилі для сторінки цін */
+
+.pricing-section {
+    padding: 80px 0;
+    background-color: var(--background-color);
+    padding-top: 56px;
+}
+
+.pricing-section h1 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 48px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Стилі для карток курсів */
+.course-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.course-icon i {
+    font-size: 40px;
+    color: white;
+}
+
+.course-card h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.course-description {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.course-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.course-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-meta i {
+    color: var(--primary-color);
+}
+
+/* Стилі для модального вікна */
+.pricing-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.pricing-modal.active {
+    display: flex;
+    opacity: 1;
+    animation: fadeInBg 0.3s;
+}
+
+@keyframes fadeInBg {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 40px 32px 32px 32px;
+    max-width: 420px;
+    width: 95%;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+    transform: scale(0.92);
+    opacity: 0;
+    animation: modalPopIn 0.35s cubic-bezier(.23,1.12,.72,1.01) forwards;
+}
+
+@keyframes modalPopIn {
+    from {
+        transform: scale(0.92) translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+}
+.close-modal:hover {
+    color: var(--primary-color);
+}
+
+#modalCourseTitle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.modal-course-price {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.modal-course-description {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+}
+
+.modal-course-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.modal-course-details li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.modal-course-details li:last-child {
+    border-bottom: none;
+}
+
+.show-consultation-modal.button {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.9rem 0;
+    margin-top: 10px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.08);
+    transition: background 0.2s, transform 0.2s;
+}
+.show-consultation-modal.button:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 24px 8px 20px 8px;
+        max-width: 98vw;
+    }
+    #modalCourseTitle {
+        font-size: 1.3rem;
+    }
+    .modal-course-price {
+        font-size: 1.3rem;
+    }
+}
+
+.pricing-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.pricing-option {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #E5E7EB;
+}
+
+.pricing-option.featured {
+    border: 2px solid var(--primary-color);
+}
+
+.pricing-option .badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pricing-option h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.pricing-option .price {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+}
+
+.pricing-option .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    text-align: left;
+}
+
+.pricing-option .features li {
+    padding: 8px 0;
+    color: var(--text-light);
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-option .features li::before {
+    content: "✓";
+    color: var(--primary-color);
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+.pricing-option .features li:last-child {
+    border-bottom: none;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 24px;
+    }
+    
+    .pricing-options {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-section {
+        padding: 60px 0;
+        padding-top: 32px;
+    }
+
+    .pricing-section h1 {
+        font-size: 36px;
+        margin-bottom: 36px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .course-card {
+        padding: 24px;
+    }
+
+    .course-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .course-icon i {
+        font-size: 30px;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+}
+
+.pricing-intro {
+    background: var(--background-color);
+    padding: 64px 0 32px 0;
+    text-align: center;
+}
+
+.pricing-intro h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.intro-lead {
+    font-size: 22px;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto 24px auto;
+}
+
+.benefit-item {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 32px 20px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.benefit-item:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.benefit-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 32px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.benefit-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.benefit-desc {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-intro {
+        padding: 40px 0 16px 0;
+    }
+    .pricing-intro h1 {
+        font-size: 32px;
+    }
+    .intro-lead {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .benefit-item {
+        padding: 20px 10px 16px 10px;
+    }
+    .benefit-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .benefit-title {
+        font-size: 16px;
+    }
+    .benefit-desc {
+        font-size: 13px;
+    }
+}
+
+main {
+    padding-top: 96px;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 72px;
+    }
+}
+
+.benefits-section {
+    margin-bottom: 64px;
+}
+
+@media (max-width: 768px) {
+    .benefits-section {
+        margin-bottom: 32px;
+    }
+}
+
+.modal-course-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 12px auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    font-size: 2.3rem;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.10);
+}
+
+.modal-course-start {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.modal-course-group-badge {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 100px;
+    padding: 4px 16px;
+    margin: 0 auto 14px auto;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(255,107,0,0.08);
+}
+
+.modal-course-link {
+    display: block;
+    text-align: center;
+    margin: 0 auto 18px auto;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 1.05rem;
+    transition: color 0.2s;
+}
+.modal-course-link:hover {
+    color: var(--secondary-color);
+} 

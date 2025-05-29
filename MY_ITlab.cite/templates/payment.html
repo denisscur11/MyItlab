@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title|default("Оплата Курсів - My ITlab") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="My ITlab Logo">
+                <span>My ITlab</span>
+            </a>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Головна</a></li>
+                <li><a href="{{ url_for('courses_page') }}">Курси</a></li>
+                <li><a href="{{ url_for('payment_page') }}">Оплата</a></li>
+                <li><a href="{{ url_for('contact_page') }}">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="payment-page" class="container">
+            <h1>Оплата Курсів</h1>
+            <p>Оберіть курс та зручний спосіб оплати.</p>
+            
+            <div class="payment-form-container styled-form">
+                <form id="course-payment-form"> <!-- TODO: method="POST" action для обробки на сервері -->
+                    <div class="form-group">
+                        <label for="payment-course-selection">Курс для оплати:</label>
+                        <select id="payment-course-selection" name="paymentCourseSelection" required>
+                            <option value="" disabled selected>-- Оберіть курс --</option>
+                            {% if courses_options %}
+                                {% for course in courses_options %}
+                                    <option value="{{ course.id }}" data-price="{{ course.price }}" data-fullprice="{{ course.price }}" data-partialprice="{{ course.partial_price|default(course.price / 2) }}">{{ course.title }} - {{ course.price }} грн</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Тип оплати:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="full-payment" name="paymentType" value="full" checked>
+                            <label for="full-payment">Повна оплата (<span id="full-payment-amount">0</span> грн)</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="partial-payment" name="paymentType" value="partial">
+                            <label for="partial-payment">Часткова оплата (<span id="partial-payment-amount">0</span> грн, 50%)</label>
+                        </div>
+                    </div>
+                     <!-- Інші поля форми (ім'я, email) -->
+                    <div id="payment-gateway-placeholder">
+                        <p>Тут буде інтеграція з платіжною системою.</p>
+                        <button type="button" id="proceed-to-payment-btn">Перейти до оплати</button>
+                        <p class="payment-info">Сума до сплати: <strong id="total-amount-display">0 грн</strong></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My ITlab. Всі права захищено.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+web: cd "$(dirname "$0")" && gunicorn --pythonpath . wsgi:app 

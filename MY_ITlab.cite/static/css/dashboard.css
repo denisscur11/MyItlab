@@ -1,0 +1,138 @@
+/* Стилі для Особистих Кабінетів (dashboard.css) */
+
+#student-dashboard h1, #teacher-panel h1 {
+    margin-bottom: 10px;
+    text-align: left; /* Вирівнювання заголовка кабінету по лівому краю */
+}
+
+#student-dashboard > p, #teacher-panel > p { /* Абзац безпосередньо під h1 */
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивна сітка для карток */
+    gap: 25px;
+}
+
+.dashboard-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+}
+
+.dashboard-card h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFD700; /* Жовта лінія */
+    text-align: left;
+}
+
+/* Стилі для елементів всередині карток */
+.course-item-student,
+.homework-item,
+.payment-item,
+.schedule-item,
+.group-item-teacher,
+.student-item-teacher {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee; /* Розділювач між елементами */
+}
+
+.course-item-student:last-child,
+.homework-item:last-child,
+.payment-item:last-child,
+.schedule-item:last-child,
+.group-item-teacher:last-child,
+.student-item-teacher:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.course-item-student h4 {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.course-item-student p,
+.homework-item p,
+.payment-item p,
+.schedule-item p,
+.group-item-teacher p,
+.student-item-teacher p {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.course-item-student a,
+.homework-item a,
+.payment-item a {
+    font-size: 0.9em;
+    color: #FF8C00;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.course-item-student a:hover,
+.homework-item a:hover,
+.payment-item a:hover {
+    text-decoration: underline;
+}
+
+.view-all-link {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #FF8C00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* Статуси */
+.status-pending, .status-due {
+    color: #dc3545; /* Червоний для очікування/боргу */
+    font-weight: bold;
+}
+
+.status-completed, .status-paid {
+    color: #28a745; /* Зелений для завершено/оплачено */
+    font-weight: bold;
+}
+
+.status-in-progress {
+    color: #ffc107; /* Жовтий для "в процесі" */
+    font-weight: bold;
+}
+
+/* Кнопки в картках */
+.dashboard-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+/* Специфічні стилі для Кабінету Викладача (можна додати пізніше) */
+#teacher-panel .actions button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}

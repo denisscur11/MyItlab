@@ -1,0 +1,351 @@
+/* Стилі для сторінки FAQ (faq.css) */
+:root {
+    --primary-color: #FF6B4A;
+    --secondary-color: #2B3A67;
+    --accent-color: #FFC107;
+    --background-color: #fff9f5;
+    --text-color: #333333;
+    --light-text: #666666;
+    --white: #ffffff;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-hero {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1E2A4D 100%);
+    color: var(--white);
+    padding: 80px 0 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.faq-hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-shape {
+    position: absolute;
+    opacity: 0.1;
+}
+
+.hero-shape-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--white);
+    border-radius: 50%;
+    top: -200px;
+    right: -100px;
+}
+
+.hero-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--white);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -100px;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.faq-search {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+#faq-search-input {
+    width: 100%;
+    padding: 16px 20px;
+    padding-left: 50px;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+#faq-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-text);
+}
+
+.faq-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.faq-category {
+    padding: 10px 20px;
+    border-radius: 100px;
+    background-color: #F3F4F6;
+    color: var(--light-text);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-category.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.faq-category:hover:not(.active) {
+    background-color: #E5E7EB;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border: 1px solid #F3F4F6;
+}
+
+.faq-item:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    width: 100%;
+    background: var(--white);
+    border: none;
+    padding: 20px 25px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--primary-color);
+}
+
+.faq-question.active {
+    color: var(--primary-color);
+}
+
+.faq-toggle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #F3F4F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.faq-question.active .faq-toggle {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    line-height: 1.7;
+    color: var(--light-text);
+}
+
+.faq-answer-inner {
+    padding: 0 0 25px 0;
+}
+
+.faq-answer p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.faq-answer a:hover {
+    text-decoration: underline;
+}
+
+.faq-ask-question {
+    margin-top: 50px;
+    background: #F9FAFB;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+}
+
+.faq-ask-question h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.faq-ask-question p {
+    color: var(--light-text);
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ask-button {
+    display: inline-block;
+    padding: 14px 30px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.ask-button:hover {
+    background: #ff5331;
+    transform: translateY(-2px);
+}
+
+/* Клас для прихованих елементів при пошуку */
+.hidden-faq-item {
+    display: none;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+    .faq-hero h1 {
+        font-size: 32px;
+    }
+    
+    .faq-hero p {
+        font-size: 16px;
+    }
+    
+    .faq-question {
+        font-size: 16px;
+        padding: 16px 20px;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+    }
+    
+    .faq-answer-inner {
+        padding: 0 0 20px 0;
+    }
+    
+    .faq-categories {
+        justify-content: center;
+    }
+    
+    .faq-ask-question h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #faq-search-input {
+        padding: 14px 14px 14px 40px;
+        font-size: 14px;
+    }
+    
+    .search-icon {
+        left: 15px;
+    }
+    
+    .faq-category {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+/* Стилі для декоративного елемента коду */
+.faq-code-snippet {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+.faq-code-snippet .code-window.mini {
+    transform: scale(0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.faq-code-snippet .code-window.mini:hover {
+    transform: scale(1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .faq-code-snippet {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .faq-code-snippet .code-window.mini {
+        transform: scale(0.9);
+    }
+}

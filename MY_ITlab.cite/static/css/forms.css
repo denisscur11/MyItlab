@@ -1,0 +1,132 @@
+/* Загальні стилі для форм (forms.css) */
+
+.styled-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 600px; /* Обмеження ширини форми */
+    margin: 20px auto; /* Центрування форми на сторінці */
+}
+
+.styled-form h1, .styled-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.styled-form p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 22px); /* Враховуємо padding (10px*2) та border (1px*2) */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #FF8C00; /* Оранжевий колір при фокусі */
+    outline: none; /* Забираємо стандартний outline */
+    box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+}
+
+.form-group textarea {
+    resize: vertical; /* Дозволяємо змінювати розмір тільки по висоті */
+    min-height: 80px;
+}
+
+.form-group select {
+    appearance: none; /* Забираємо стандартний вигляд селекта */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23aaa' width='18px' height='18px'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    padding-right: 35px; /* Місце для стрілки */
+}
+
+.form-group input[type="number"] {
+    /* Можна додати специфічні стилі для полів типу number, якщо потрібно */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto; /* Повертаємо стандартну ширину для чекбоксів */
+    margin-right: 10px;
+    accent-color: #FF8C00; /* Колір чекбокса */
+}
+
+.checkbox-group .checkbox-label {
+    font-weight: normal;
+    color: #555;
+    font-size: 0.95em;
+    margin-bottom: 0; /* Забираємо нижній відступ у лейбла чекбокса */
+}
+
+.styled-form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #FF8C00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.styled-form button[type="submit"]:hover {
+    background-color: #e67e00; /* Темніший оранжевий при наведенні */
+}
+
+/* Стилі для повідомлень про помилки/успіх (можна додати пізніше з JS) */
+.form-message {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

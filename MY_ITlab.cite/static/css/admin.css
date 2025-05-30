@@ -1,0 +1,140 @@
+/* Стилі для Адмін-панелі (admin.css) */
+
+#admin-panel-page h1 {
+    margin-bottom: 25px;
+    text-align: center; /* Заголовок адмінки по центру */
+}
+
+/* Навігація по розділах адмінки */
+.admin-sections-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.admin-sections-nav button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-sections-nav button:hover,
+.admin-sections-nav button.active {
+    background-color: #FF8C00; /* Оранжевий для активної/наведеної кнопки */
+    color: white;
+    border-color: #FF8C00;
+}
+
+/* Загальні стилі для секцій адмінки */
+.admin-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.admin-section h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFD700; /* Жовта лінія */
+}
+
+.admin-section p {
+    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Стилі для таблиць в адмінці (якщо використовуються) */
+.admin-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.admin-section table th,
+.admin-section table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.admin-section table th {
+    background-color: #f7f7f7; /* Світло-сірий для заголовків таблиці */
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-section table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+.admin-section table tbody tr:hover {
+    background-color: #fff8e1; /* Дуже світло-жовтий при наведенні */
+}
+
+/* Кнопки дій в таблицях або секціях */
+.action-btn {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.action-btn.view {
+    background-color: #007bff; /* Синій */
+    color: white;
+    border-color: #007bff;
+}
+.action-btn.view:hover {
+    background-color: #0056b3;
+}
+
+.action-btn.edit, .action-btn.process {
+    background-color: #ffc107; /* Жовтий */
+    color: #212529;
+    border-color: #ffc107;
+}
+.action-btn.edit:hover, .action-btn.process:hover {
+    background-color: #e0a800;
+}
+
+.action-btn.delete {
+    background-color: #dc3545; /* Червоний */
+    color: white;
+    border-color: #dc3545;
+}
+.action-btn.delete:hover {
+    background-color: #c82333;
+}
+
+.action-btn.add-new {
+    background-color: #28a745; /* Зелений */
+    color: white;
+    border-color: #28a745;
+    margin-bottom: 15px; /* Відступ для кнопки "Додати новий" */
+    padding: 8px 15px;
+    font-size: 0.95em;
+}
+.action-btn.add-new:hover {
+    background-color: #1e7e34;
+}
+
+/* Статуси (можна використовувати ті ж, що й в dashboard.css, або перевизначити) */
+.admin-section .status-pending { color: #ffc107; font-weight: bold; } /* Жовтий для "Нова" */
+.admin-section .status-processed { color: #17a2b8; font-weight: bold; } /* Бірюзовий для "Оброб." */
+.admin-section .status-completed { color: #28a745; font-weight: bold; } /* Зелений для "Завершено" */
+.admin-section .status-rejected { color: #dc3545; font-weight: bold; } /* Червоний для "Відхилено" */

@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+
+{% block title %}{{ company_info.name }} - Головна{% endblock %}
+
+{% block content %}
+<section id="hero">
+    <div class="decoration-dots"></div>
+    <div class="decoration-line"></div>
+    <div class="decoration-line"></div>
+    <div class="decoration-line"></div>
+    
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-badges">
+                <span class="badge">
+                    <i class="fas fa-star"></i>
+                    Для початківців
+                </span>
+                <span class="badge">
+                    <i class="fas fa-laptop"></i>
+                    Онлайн-формат
+                </span>
+            </div>
+            <h1>{{ company_info.slogan }}</h1>
+            <p>{{ company_info.mission }}</p>
+            <div class="hero-buttons">
+                <button class="button button-primary show-consultation-modal">
+                    Записатися на пробний урок
+                </button>
+                <a href="{{ url_for('courses_page') }}" class="button button-outline">
+                    Переглянути курси
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="decoration-dots"></div>
+            <div class="decoration-circle"></div>
+            <img src="{{ url_for('static', filename='images/python-logo.png') }}" alt="Python Logo">
+        </div>
+    </div>
+</section>
+
+<section id="features" class="features-grid">
+    <div class="container">
+        <div class="features-wrapper">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="feature-text">
+                    Прості практичні завдання з першого заняття
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="feature-text">
+                    Маленькі групи до 15 людей
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="feature-text">
+                    Дружня атмосфера для новачків
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="feature-text">
+                    Доступна ціна від 1500 грн
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="courses">
+    <div class="container">
+        <div class="section-header">
+            <h2>Наші курси</h2>
+            <p>Оберіть свій шлях у світ IT з нашими професійними курсами</p>
+        </div>
+        
+        <div class="courses-grid">
+            {% for course_id, course in courses.items() %}
+            <div class="course-card" style="--course-color: {{ course.color }}">
+                {% if course.bestseller %}
+                <div class="course-badge">Популярний</div>
+                {% endif %}
+                <div class="course-header">
+                    <h3>{{ course.title }}</h3>
+                    <div class="course-price">{{ course.price }}</div>
+                </div>
+                <div class="course-description">{{ course.description }}</div>
+                <div class="course-info">
+                    <div class="course-info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Старт: {{ course.start_date }}</span>
+                    </div>
+                    <div class="course-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Тривалість: {{ course.duration }}</span>
+                    </div>
+                    <div class="course-info-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Рівень: {{ course.level }}</span>
+                    </div>
+                </div>
+                <div class="course-footer">
+                    <a href="{{ url_for('course_detail', course_id=course_id) }}" class="button button-outline">Детальніше</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="courses-cta">
+            <a href="{{ url_for('courses_page') }}" class="button button-primary">Всі курси</a>
+        </div>
+    </div>
+</section>
+
+<section class="salary-stats">
+    <div class="container">
+        <div class="salary-header">
+            <div class="salary-title">
+                <h3 class="profession">PYTHON DEVELOPER: ЗАРПЛАТА</h3>
+                <div class="salary-amount">$2,500</div>
+                <div class="salary-growth">
+                    <span class="growth-badge">
+                        <i class="fas fa-arrow-up"></i>
+                        +25%
+                    </span>
+                    <span class="growth-text">Річне зростання зарплат по DOU</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="salary-chart">
+            <div class="chart-container">
+                <div class="chart-bar" style="height: 20%" data-year="2020"></div>
+                <div class="chart-bar" style="height: 40%" data-year="2021"></div>
+                <div class="chart-bar" style="height: 60%" data-year="2022"></div>
+                <div class="chart-bar" style="height: 80%" data-year="2023"></div>
+                <div class="chart-bar" style="height: 100%" data-year="2024"></div>
+            </div>
+            <div class="chart-years">
+                <span>2020</span>
+                <span>2021</span>
+                <span>2022</span>
+                <span>2023</span>
+                <span>2024</span>
+            </div>
+        </div>
+
+        <div class="salary-info">
+            <div class="info-bubble">
+                <span>Python розробники зараз у попиті!</span>
+                <span class="emoji">🚀</span>
+            </div>
+            <p class="info-text">
+                Щоразу, коли ви користуєтеся сайтом або застосунком, ви бачите роботу Python розробників. 
+                Вони створюють серверну частину додатків, обробляють дані та забезпечують безпеку. 
+                Python розробники також працюють з AI, машинним навчанням та аналізом даних. 
+                Вражає, чи не так?
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="advantages">
+    <div class="container">
+        <div class="section-header">
+            <h2>Чому обирають нас</h2>
+            <p>Ми невелика школа, але в цьому наша перевага</p>
+        </div>
+        <div class="advantages-grid">
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-users advantage-icon"></i>
+                <h3>Маленькі групи</h3>
+                <p>Максимум 12-15 студентів у групі для індивідуального підходу</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-laptop-code advantage-icon"></i>
+                <h3>Практичний підхід</h3>
+                <p>Більше практики, менше теорії - навчання через створення проектів</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-comments advantage-icon"></i>
+                <h3>Дружня атмосфера</h3>
+                <p>Неформальне спілкування та відсутність корпоративних правил</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-gift advantage-icon"></i>
+                <h3>Перше заняття безкоштовно</h3>
+                <p>Спробуйте наш курс без ризику — перший урок безкоштовний для всіх</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-comment-dollar advantage-icon"></i>
+                <h3>Чесні ціни</h3>
+                <p>Доступна вартість без прихованих платежів</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-heart advantage-icon"></i>
+                <h3>Особиста увага</h3>
+                <p>Викладач знає кожного студента і допомагає з індивідуальними труднощами</p>
+            </div>
+            <div class="advantage-item animate-on-scroll">
+                <i class="fas fa-seedling advantage-icon"></i>
+                <h3>Початок шляху</h3>
+                <p>Ми допомагаємо зробити перші кроки в програмуванні без зайвого стресу</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="learning-process">
+    <div class="container">
+        <div class="section-header">
+            <h2>Як проходить навчання</h2>
+            <p>Зручний та ефективний процес навчання для найкращих результатів</p>
+        </div>
+        <div class="learning-steps">
+            <div class="learning-step animate-on-scroll">
+                <div class="step-icon">👨‍💻</div>
+                <div class="step-content">
+                    <h3>Навчання проходить в режимі онлайн-трансляції</h3>
+                    <p>а відеозапис <strong>зберігається</strong> і доступний до перегляду протягом всього курсу.</p>
+                </div>
+            </div>
+
+            <div class="learning-step animate-on-scroll">
+                <div class="step-icon">💼</div>
+                <div class="step-content">
+                    <h3>Домашні завдання</h3>
+                    <p>виконуються у будь-який зручний час та <strong>надсилаються викладачу</strong> для перевірки.</p>
+                </div>
+            </div>
+
+            <div class="learning-step animate-on-scroll">
+                <div class="step-icon">👍</div>
+                <div class="step-content">
+                    <h3>Викладач дає зворотній зв'язок</h3>
+                    <p>з розбором помилок у домашньому завданні.</p>
+                </div>
+            </div>
+
+            <div class="learning-step animate-on-scroll">
+                <div class="step-icon">💡</div>
+                <div class="step-content">
+                    <h3>Ви опрацьовуєте помилки</h3>
+                    <p>і закріплюєте пройдений матеріал.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq-preview">
+    <div class="container">
+        <div class="section-header">
+            <h2>Часті питання</h2>
+            <p>Відповіді на найпопулярніші запитання про навчання в {{ company_info.name }}</p>
+        </div>
+        
+        <div class="faq-preview-list">
+            {% if faq_items %}
+                {% for item in faq_items[:3] %}
+                <div class="faq-preview-item">
+                    <div class="faq-preview-question">
+                        <h3>{{ item.question }}</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-preview-answer">
+                        <p>{{ item.answer }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="faq-preview-item">
+                    <div class="faq-preview-question">
+                        <h3>Чи потрібні попередні знання для вивчення програмування?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-preview-answer">
+                        <p>Для наших курсів для початківців не потрібні попередні знання в програмуванні. Ми починаємо з основ і поступово переходимо до складніших тем. Найважливіше — ваше бажання вчитися та розвиватися.</p>
+                    </div>
+                </div>
+                <div class="faq-preview-item">
+                    <div class="faq-preview-question">
+                        <h3>Як проходить навчання в My ITlab?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-preview-answer">
+                        <p>Навчання включає теоретичні та практичні заняття. Ви отримуєте доступ до відеоуроків, матеріалів курсу, домашніх завдань та проектів. Раз на тиждень проводяться онлайн-зустрічі з викладачем, де ви можете задати питання та отримати зворотній зв'язок.</p>
+                    </div>
+                </div>
+                <div class="faq-preview-item">
+                    <div class="faq-preview-question">
+                        <h3>Скільки годин потрібно присвячувати навчанню?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-preview-answer">
+                        <p>Рекомендуємо виділяти мінімум 10-15 годин на тиждень для навчання: 2-3 години на перегляд теоретичних матеріалів та 8-12 годин на практичні завдання та проекти. Це дозволить вам ефективно засвоювати матеріал та розвивати навички.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="faq-more">
+            <a href="{{ url_for('faq_page') }}" class="button button-outline">Більше питань</a>
+        </div>
+    </div>
+</section>
+
+<section id="cta">
+    <div class="container">
+        <div class="cta-wrapper">
+            <div class="cta-content">
+                <h2>Хочете спробувати програмування?</h2>
+                <p>Запишіться на безкоштовний пробний онлайн-урок і дізнайтеся, чи підходить вам програмування</p>
+                <button class="button button-contrast show-consultation-modal">
+                    Записатися на пробний урок
+                </button>
+                <div class="dark-bg-social">
+                    <a href="{{ company_info.social_media.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ company_info.social_media.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ company_info.social_media.telegram }}" target="_blank" class="social-button"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="{{ company_info.social_media.linkedin }}" target="_blank" class="social-button"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{{ company_info.social_media.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="social-feed">
+    <div class="container">
+        <div class="section-header">
+            <h2>Ми в соціальних мережах</h2>
+            <p>Слідкуйте за нами та будьте в курсі останніх новин</p>
+        </div>
+        <div class="social-grid">
+            <a href="{{ company_info.social_media.instagram }}" target="_blank" class="social-item main-social-item animate-on-scroll instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="{{ company_info.social_media.facebook }}" target="_blank" class="social-item main-social-item animate-on-scroll facebook">
+                <i class="fab fa-facebook"></i>
+                <span>Facebook</span>
+            </a>
+            <a href="{{ company_info.social_media.telegram }}" target="_blank" class="social-item main-social-item animate-on-scroll telegram">
+                <i class="fab fa-telegram"></i>
+                <span>Telegram</span>
+            </a>
+            <a href="{{ company_info.social_media.linkedin }}" target="_blank" class="social-item main-social-item animate-on-scroll linkedin">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="{{ company_info.social_media.tiktok }}" target="_blank" class="social-item main-social-item animate-on-scroll tiktok">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ preview interaction
+        const faqItems = document.querySelectorAll('.faq-preview-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-preview-question');
+            const answer = item.querySelector('.faq-preview-answer');
+            
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+                
+                // Close all items
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-preview-answer').style.maxHeight = null;
+                });
+                
+                // Open clicked item if it was closed
+                if (!isOpen) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+        
+        // Open first FAQ item by default
+        if (faqItems.length > 0) {
+            faqItems[0].classList.add('active');
+            faqItems[0].querySelector('.faq-preview-answer').style.maxHeight = 
+                faqItems[0].querySelector('.faq-preview-answer').scrollHeight + 'px';
+        }
+    });
+</script>
+{% endblock %}

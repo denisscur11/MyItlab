@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Вхід до адмін-панелі - {{ company_info.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-login-container {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .admin-login-logo {
+        margin-bottom: 20px;
+    }
+    
+    .admin-login-form {
+        margin-top: 30px;
+    }
+    
+    .login-form-group {
+        margin-bottom: 20px;
+    }
+    
+    .login-input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s;
+    }
+    
+    .login-input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        outline: none;
+    }
+    
+    .login-button {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .login-button:hover {
+        background-color: #ff5500;
+    }
+    
+    .login-error {
+        color: #f44336;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: rgba(244, 67, 54, 0.1);
+        border-radius: 8px;
+    }
+    
+    .login-footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+    }
+    
+    .admin-login-container h1 {
+        color: var(--primary-color);
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .admin-login-container p {
+        color: #777;
+        margin-bottom: 20px;
+    }
+    
+    .code-decoration-login {
+        max-width: 100%;
+        margin: 0 auto 30px;
+    }
+    
+    .code-window-login {
+        transform: scale(0.8);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-login-container">
+    <div class="admin-login-logo">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="40" fill="#FF6B00"/>
+            <path d="M25 40L35 30M35 50L25 40L35 50ZM25 40H55H25Z" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    
+    <h1>Адміністративна панель</h1>
+    <p>Введіть пароль для доступу до панелі адміністратора</p>
+    
+    <div class="code-decoration-login">
+        <div class="code-window code-window-login">
+            <div class="code-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="code-title">login.py</span>
+            </div>
+            <div class="code-content">
+                <pre><code>def check_admin_access(password):
+    """Перевірка прав доступу до адмін-панелі"""
+    hashed_password = hash_algorithm(password)
+    
+    # Перевірка хешу пароля
+    if is_valid_password(hashed_password):
+        return grant_admin_access()
+    else:
+        return access_denied()
+</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    {% if error %}
+    <div class="login-error">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('admin_panel') }}" class="admin-login-form">
+        <div class="login-form-group">
+            <input type="password" name="password" id="password" class="login-input" placeholder="Введіть пароль" required>
+        </div>
+        <button type="submit" class="login-button">Увійти</button>
+    </form>
+    
+    <div class="login-footer">
+        © {{ company_info.name }} - Адміністративна панель
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Автофокус на полі вводу пароля
+        document.getElementById('password').focus();
+    });
+</script>
+{% endblock %} 

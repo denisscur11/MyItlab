@@ -1,3 +1,0 @@
-@echo off
-echo Starting My ITlab development server...
-python run.py 

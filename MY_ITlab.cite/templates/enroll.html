@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title|default("Заявка на курс - My ITlab") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="My ITlab Logo">
+                <span>My ITlab</span>
+            </a>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Головна</a></li>
+                <li><a href="{{ url_for('courses_page') }}">Курси</a></li>
+                <li><a href="{{ url_for('contact_page') }}">Контакти</a></li>
+                <li><a href="{{ url_for('blog_page') }}">Блог</a></li>
+                <li><a href="{{ url_for('faq_page') }}">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="enroll-page" class="container">
+            <h1>Заявка на навчання</h1>
+            <p>Заповніть форму нижче, щоб записатися на курс або отримати консультацію.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="form-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form id="general-enroll-form" class="styled-form" method="POST" action="{{ url_for('enroll_page') }}">
+                <div class="form-group">
+                    <label for="user-name">Ваше ім'я (або ім'я дитини):</label>
+                    <input type="text" id="user-name" name="userName" required value="{{ request.form.userName }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-age">Вік (повних років):</label>
+                    <input type="number" id="user-age" name="userAge" min="5" max="99" required value="{{ request.form.userAge }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-contact">Ваш контакт (телефон або Email):</label>
+                    <input type="text" id="user-contact" name="userContact" required placeholder="+380 XX XXX XX XX або example@mail.com" value="{{ request.form.userContact }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-selection">Оберіть курс:</label>
+                    <select id="course-selection" name="courseSelection" required>
+                        <option value="" disabled {% if not request.args.get('course_id') and not request.form.courseSelection %}selected{% endif %}>-- Оберіть курс --</option>
+                        {% if courses_options %}
+                            {% for course in courses_options %}
+                                <option value="{{ course.id }}" {% if request.args.get('course_id') == course.id or request.form.courseSelection == course.id %}selected{% endif %}>{{ course.title }}</option>
+                            {% endfor %}
+                        {% endif %}
+                        <option value="other" {% if request.form.courseSelection == 'other' %}selected{% endif %}>Інше/Потрібна консультація</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-comments">Додаткові коментарі (необов'язково):</label>
+                    <textarea id="user-comments" name="userComments" rows="4">{{ request.form.userComments }}</textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent" class="checkbox-label">Я даю згоду на обробку моїх персональних даних.</label>
+                </div>
+
+                <button type="submit">Записатись</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My ITlab. Всі права захищено.</p>
+            <p><a href="{{ url_for('privacy_page') }}">Політика конфіденційності</a> | <a href="{{ url_for('terms_page') }}">Умови користування</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/enroll.js') }}"></script> -->
+    <!-- JS для цієї сторінки може бути не потрібен, якщо валідація та обробка на сервері -->
+</body>
+</html>

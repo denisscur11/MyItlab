@@ -1,0 +1,670 @@
+{% extends "base.html" %}
+
+{% block title %}Адмін-панель - {{ company_info.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-dashboard {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+    
+    .admin-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .admin-title h1 {
+        color: var(--text-color);
+        font-size: 28px;
+        margin-bottom: 8px;
+        margin-top: 10px;
+    }
+    
+    .admin-title p {
+        color: #777;
+        margin-bottom: 5px;
+    }
+    
+    .admin-actions {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .admin-actions a {
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    
+    .admin-actions a:hover {
+        background-color: #ff5500;
+        transform: translateY(-2px);
+    }
+    
+    .admin-actions a.secondary {
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    
+    .admin-actions a.secondary:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .admin-overview {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .stat-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+    
+    .stat-icon.consultations {
+        background-color: rgba(255, 107, 0, 0.1);
+        color: var(--primary-color);
+    }
+    
+    .stat-icon.messages {
+        background-color: rgba(33, 150, 243, 0.1);
+        color: #2196f3;
+    }
+    
+    .stat-icon.courses {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+    }
+    
+    .stat-icon.users {
+        background-color: rgba(156, 39, 176, 0.1);
+        color: #9c27b0;
+    }
+    
+    .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    
+    .stat-label {
+        color: #777;
+        font-size: 14px;
+    }
+    
+    .admin-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+    }
+    
+    .admin-section {
+        background-color: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+        overflow-x: auto;
+    }
+    
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+    
+    .section-header h2 {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+    
+    .section-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .section-action {
+        padding: 8px 15px;
+        background-color: #f5f5f5;
+        color: #333;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .section-action:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .admin-table th {
+        font-weight: 600;
+        color: #555;
+        background-color: #f9f9f9;
+    }
+    
+    .admin-table tbody tr {
+        transition: all 0.3s;
+    }
+    
+    .admin-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .badge {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .badge-new {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+    }
+    
+    .badge-pending {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+    }
+    
+    .badge-processed {
+        background-color: rgba(33, 150, 243, 0.1);
+        color: #2196f3;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .action-btn {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .btn-view {
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    
+    .btn-process {
+        background-color: #4caf50;
+        color: white;
+    }
+    
+    .btn-delete {
+        background-color: #f44336;
+        color: white;
+    }
+    
+    .btn-view:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .btn-process:hover {
+        background-color: #388e3c;
+    }
+    
+    .btn-delete:hover {
+        background-color: #d32f2f;
+    }
+    
+    .admin-sidebar .admin-section {
+        padding: 25px;
+    }
+    
+    .chart-container {
+        height: 200px;
+        margin-top: 20px;
+    }
+    
+    .quick-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .stat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+    
+    .stat-item-label {
+        font-weight: 500;
+        color: #555;
+    }
+    
+    .stat-item-value {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
+    .recent-activity {
+        margin-top: 20px;
+    }
+    
+    .activity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .activity-item:last-child {
+        border-bottom: none;
+    }
+    
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(33, 150, 243, 0.1);
+        color: #2196f3;
+        font-size: 16px;
+    }
+    
+    .activity-content {
+        flex: 1;
+    }
+    
+    .activity-title {
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+    
+    .activity-time {
+        font-size: 13px;
+        color: #777;
+    }
+    
+    .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #777;
+    }
+    
+    .no-data i {
+        font-size: 48px;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+    }
+    
+    @media (max-width: 1200px) {
+        .admin-overview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 991px) {
+        .admin-content {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .admin-dashboard {
+            padding-top: 100px;
+        }
+        
+        .admin-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .admin-actions {
+            width: 100%;
+        }
+        
+        .admin-actions a {
+            flex: 1;
+            text-align: center;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .admin-overview {
+            grid-template-columns: 1fr;
+        }
+        
+        .stat-card {
+            padding: 20px;
+        }
+        
+        .admin-section {
+            padding: 20px;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 10px;
+        }
+    }
+    
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="container">
+        <!-- Шапка адмін-панелі -->
+        <div class="admin-header">
+            <div class="admin-title">
+                <h1>Адміністративна панель</h1>
+                <p>Управління заявками та повідомленнями з сайту</p>
+            </div>
+            <div class="admin-actions">
+                <a href="{{ url_for('home') }}" class="secondary">На головну</a>
+                <a href="{{ url_for('admin_panel') }}">Оновити дані</a>
+            </div>
+        </div>
+        
+        <!-- Картки зі статистикою -->
+        <div class="admin-overview">
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <div class="stat-icon consultations">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                </div>
+                <div class="stat-value">{{ consultation_requests|length }}</div>
+                <div class="stat-label">Заявки на консультації</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <div class="stat-icon messages">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="stat-value">{{ contact_requests|length }}</div>
+                <div class="stat-label">Повідомлення</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <div class="stat-icon courses">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Активні курси</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <div class="stat-icon users">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="stat-value">0</div>
+                <div class="stat-label">Користувачі</div>
+            </div>
+        </div>
+        
+        <!-- Основний контент -->
+        <div class="admin-content">
+            <div class="admin-main">
+                <!-- Заявки на консультації -->
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Заявки на консультації</h2>
+                        <div class="section-actions">
+                            <a href="#" class="section-action">Всі заявки</a>
+                            <a href="#" class="section-action">Експорт</a>
+                        </div>
+                    </div>
+                    
+                    {% if consultation_requests %}
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Ім'я</th>
+                                    <th>Телефон</th>
+                                    <th>Email</th>
+                                    <th>Статус</th>
+                                    <th>Дії</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for request in consultation_requests %}
+                                <tr>
+                                    <td>{{ request.timestamp }}</td>
+                                    <td>{{ request.name }}</td>
+                                    <td>{{ request.phone }}</td>
+                                    <td>{{ request.email }}</td>
+                                    <td><span class="badge badge-new">Нова</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn btn-view" onclick="alert('Деталі:\n\nДата: {{ request.timestamp }}\nІм\'я: {{ request.name }}\nТелефон: {{ request.phone }}\nEmail: {{ request.email }}')">Деталі</button>
+                                            <button class="action-btn btn-process" onclick="this.disabled=true; this.textContent='Опрацьовано'; this.style.backgroundColor='#aaa'; this.closest('tr').querySelector('.badge').textContent='Опрацьовано'; this.closest('tr').querySelector('.badge').classList.remove('badge-new'); this.closest('tr').querySelector('.badge').classList.add('badge-processed'); alert('Заявку позначено як опрацьовану');">Опрацювати</button>
+                                            <button class="action-btn btn-delete" onclick="if(confirm('Ви дійсно хочете видалити цей запис?')) { this.closest('tr').remove(); alert('Запис видалено'); }">Видалити</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="no-data">
+                        <i class="fas fa-inbox"></i>
+                        <p>Немає заявок на консультації</p>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Повідомлення -->
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Повідомлення з сайту</h2>
+                        <div class="section-actions">
+                            <a href="#" class="section-action">Всі повідомлення</a>
+                            <a href="#" class="section-action">Експорт</a>
+                        </div>
+                    </div>
+                    
+                    {% if contact_requests %}
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Ім'я</th>
+                                    <th>Email</th>
+                                    <th>Повідомлення</th>
+                                    <th>Статус</th>
+                                    <th>Дії</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for request in contact_requests %}
+                                <tr>
+                                    <td>{{ request.timestamp }}</td>
+                                    <td>{{ request.name }}</td>
+                                    <td>{{ request.email }}</td>
+                                    <td>{{ request.message|truncate(50) }}</td>
+                                    <td><span class="badge badge-new">Нове</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn btn-view" onclick="alert('Деталі:\n\nДата: {{ request.timestamp }}\nІм\'я: {{ request.name }}\nEmail: {{ request.email }}\nПовідомлення: {{ request.message }}')">Деталі</button>
+                                            <button class="action-btn btn-process" onclick="this.disabled=true; this.textContent='Опрацьовано'; this.style.backgroundColor='#aaa'; this.closest('tr').querySelector('.badge').textContent='Опрацьовано'; this.closest('tr').querySelector('.badge').classList.remove('badge-new'); this.closest('tr').querySelector('.badge').classList.add('badge-processed'); alert('Повідомлення позначено як опрацьоване');">Опрацювати</button>
+                                            <button class="action-btn btn-delete" onclick="if(confirm('Ви дійсно хочете видалити це повідомлення?')) { this.closest('tr').remove(); alert('Повідомлення видалено'); }">Видалити</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="no-data">
+                        <i class="fas fa-inbox"></i>
+                        <p>Немає повідомлень з сайту</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Бічна панель -->
+            <div class="admin-sidebar">
+                <!-- Швидка статистика -->
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Швидка статистика</h2>
+                    </div>
+                    <div class="chart-container">
+                        <!-- Тут буде графік -->
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 14px;">
+                            Графік заявок
+                        </div>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-item-label">Заявки сьогодні</div>
+                            <div class="stat-item-value">{{ consultation_requests|length }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-label">Повідомлення сьогодні</div>
+                            <div class="stat-item-value">{{ contact_requests|length }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-label">Конверсія</div>
+                            <div class="stat-item-value">4.5%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Нещодавня активність -->
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Остання активність</h2>
+                    </div>
+                    <div class="recent-activity">
+                        {% if consultation_requests or contact_requests %}
+                            {% if consultation_requests %}
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">Нова заявка на консультацію</div>
+                                        <div class="activity-time">{{ consultation_requests[0].timestamp if consultation_requests|length > 0 }}</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            {% if contact_requests %}
+                                <div class="activity-item">
+                                    <div class="activity-icon" style="background-color: rgba(156, 39, 176, 0.1); color: #9c27b0;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">Нове повідомлення від {{ contact_requests[0].name if contact_requests|length > 0 }}</div>
+                                        <div class="activity-time">{{ contact_requests[0].timestamp if contact_requests|length > 0 }}</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: rgba(76, 175, 80, 0.1); color: #4caf50;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Вхід до адмін-панелі</div>
+                                    <div class="activity-time">Зараз</div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="no-data">
+                                <p>Немає останньої активності</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://kit.fontawesome.com/3b4d3cf4e8.js" crossorigin="anonymous"></script>
+{% endblock %} 

@@ -1,0 +1,110 @@
+/* Стилі для сторінки Розкладу (schedule.css) */
+
+#schedule-page h1 {
+    margin-bottom: 15px;
+}
+
+#schedule-page > p { /* Абзац безпосередньо під h1 */
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.schedule-filters {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff9e6; /* Світло-жовтий фон для фільтрів */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Для адаптивності */
+}
+
+.schedule-filters label {
+    font-weight: bold;
+    color: #555;
+}
+
+.schedule-filters select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 200px; /* Мінімальна ширина для селекта */
+    font-size: 0.95em;
+}
+
+.schedule-filters button {
+    padding: 9px 20px; /* Трохи менші кнопки */
+    font-size: 0.95em;
+}
+
+.schedule-table-container {
+    overflow-x: auto; /* Дозволяє горизонтальний скрол для таблиці на малих екранах */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.9em; /* Трохи менший шрифт для таблиці */
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px 10px; /* Збільшено padding для кращої читабельності */
+    text-align: left;
+    vertical-align: top; /* Вирівнювання по верху, якщо контенту багато */
+}
+
+table th {
+    background-color: #FFD700; /* Жовтий фон для заголовків */
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Чергування кольорів рядків */
+}
+
+table tbody tr:hover {
+    background-color: #fff3cd; /* Світло-жовтий при наведенні */
+}
+
+table td {
+    color: #555;
+}
+
+/* Приклад стилізації для комірок з курсами */
+table td[data-course-type="python"] {
+    background-color: #e6ffe6; /* Світло-зелений для Python */
+}
+table td[data-course-type="web"] {
+    background-color: #e6f2ff; /* Світло-синій для Web */
+}
+table td[data-course-type="design"] {
+    background-color: #ffe6f9; /* Світло-рожевий для Design */
+}
+
+
+.schedule-note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #777;
+}
+
+.schedule-note a {
+    color: #FF8C00;
+}
+
+/* Клас для приховування рядків через JS (фільтрація) */
+.hidden-row {
+    display: none;
+}

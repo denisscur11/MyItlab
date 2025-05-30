@@ -1,0 +1,189 @@
+/* Стилі для сторінки Деталей Статті Блогу (blog_post_detail.css) */
+
+#blog-post-detail-page {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Основний контент та сайдбар */
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.post-header {
+    grid-column: 1 / -1; /* Заголовок займає всю ширину */
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-header h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.post-meta-detail {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.post-meta-detail span {
+    margin-right: 5px;
+}
+
+.main-post-image {
+    width: 100%;
+    max-height: 450px; /* Обмеження висоти головного зображення */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.post-content {
+    grid-column: 1 / 2; /* Основний контент статті */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.post-content p {
+    font-size: 1.05em; /* Трохи більший шрифт для читабельності */
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.post-content h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.post-content h3 {
+    font-size: 1.5em;
+    color: #444;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.post-content blockquote {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: #fff9e6; /* Світло-жовтий фон для цитат */
+    border-left: 5px solid #FFD700; /* Жовта лінія */
+    font-style: italic;
+    color: #555;
+    font-size: 1em;
+}
+
+.post-content ul, .post-content ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+.post-content ul li, .post-content ol li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.post-sidebar {
+    grid-column: 2 / 3; /* Сайдбар */
+}
+
+.post-sidebar > div { /* Кожен блок в сайдбарі */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.post-sidebar h3 {
+    font-size: 1.3em;
+    color: #444;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.related-posts ul {
+    list-style: none;
+    padding: 0;
+}
+
+.related-posts ul li {
+    margin-bottom: 10px;
+}
+
+.related-posts ul li a {
+    text-decoration: none;
+    color: #FF8C00;
+    font-size: 0.95em;
+}
+.related-posts ul li a:hover {
+    text-decoration: underline;
+}
+
+.share-buttons .social-share-btn {
+    display: block;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    transition: opacity 0.2s ease;
+}
+.share-buttons .social-share-btn:hover {
+    opacity: 0.85;
+}
+.social-share-btn.facebook { background-color: #3b5998; }
+.social-share-btn.twitter { background-color: #1da1f2; }
+.social-share-btn.linkedin { background-color: #0077b5; }
+
+
+.post-navigation {
+    grid-column: 1 / -1; /* Навігація займає всю ширину */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.post-navigation .nav-link {
+    color: #FF8C00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+.post-navigation .nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивність */
+@media (max-width: 992px) {
+    #blog-post-detail-page {
+        grid-template-columns: 1fr; /* Один стовпець на менших екранах */
+    }
+    .post-content {
+        grid-column: 1 / -1;
+    }
+    .post-sidebar {
+        grid-column: 1 / -1;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-header h1 {
+        font-size: 2em;
+    }
+    .main-post-image {
+        max-height: 300px;
+    }
+}
